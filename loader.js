@@ -3,7 +3,7 @@
    finds the JSX files on DOMContentLoaded exactly as if they were in index.html. */
 (function () {
   var data = [
-    "data/ch1.js?v=2f56e4688d",
+    "data/ch1.js?v=7899c427a0",
     "data/ch2.js?v=f10bc25cf5",
     "data/ch3.js?v=85a9877010",
     "data/ch4.js?v=1c006ad2ff",
