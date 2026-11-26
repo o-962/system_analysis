@@ -204,12 +204,29 @@ function EditLayer(props) {
   var drawing = React.useRef(null);
   var active = props.active;
 
+  var redoStack = React.useRef([]);
+  function pageJson() { return JSON.stringify(MARKS.pages[key] || { marks: [], ink: [] }); }
   function snapshot() {
-    history.current.push(JSON.stringify(MARKS.pages[key] || { marks: [], ink: [] }));
-    if (history.current.length > 60) history.current.shift();
+    history.current.push(pageJson());
+    if (history.current.length > 100) history.current.shift();
+    redoStack.current = [];
   }
   function commit() { saveMarks(); }
-  React.useEffect(function () { history.current = []; setPop(null); setDialog(null); setConfirmClear(false); }, [key]);
+  React.useEffect(function () { history.current = []; redoStack.current = []; setPop(null); setDialog(null); setConfirmClear(false); }, [key]);
+
+  /* Ctrl+Z / Cmd+Z undo, Ctrl+Y or Ctrl+Shift+Z redo: on any page, unless typing in a field. */
+  React.useEffect(function () {
+    function onKey(e) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      var t = e.target;
+      if (t && (/INPUT|TEXTAREA|SELECT/.test(t.tagName) || t.isContentEditable)) return;
+      var k = e.key.toLowerCase();
+      if (k === 'z' && !e.shiftKey) { if (history.current.length) { e.preventDefault(); undo(); } }
+      else if (k === 'y' || (k === 'z' && e.shiftKey)) { if (redoStack.current.length) { e.preventDefault(); redo(); } }
+    }
+    window.addEventListener('keydown', onKey);
+    return function () { window.removeEventListener('keydown', onKey); };
+  });
 
   /* Re-locate highlights and notes, paint them, and position pins and the ink layer. */
   var relayout = React.useCallback(function () {
@@ -347,7 +364,13 @@ function EditLayer(props) {
   }
   function undo() {
     var prev = history.current.pop(); if (!prev) return;
-    MARKS.pages[key] = JSON.parse(prev); commit();
+    redoStack.current.push(pageJson());
+    MARKS.pages[key] = JSON.parse(prev); setPop(null); commit();
+  }
+  function redo() {
+    var next = redoStack.current.pop(); if (!next) return;
+    history.current.push(pageJson());
+    MARKS.pages[key] = JSON.parse(next); setPop(null); commit();
   }
   function clearPage() { snapshot(); MARKS.pages[key] = { marks: [], ink: [] }; commit(); setConfirmClear(false); }
 
@@ -445,7 +468,8 @@ function EditLayer(props) {
               </div>
             ) : null}
             <div className="edit-group">
-              <button type="button" className="tool-btn" onClick={undo} disabled={!history.current.length}>Undo</button>
+              <button type="button" className="tool-btn" onClick={undo} disabled={!history.current.length} title="Undo (Ctrl+Z)">Undo</button>
+              <button type="button" className="tool-btn" onClick={redo} disabled={!redoStack.current.length} title="Redo (Ctrl+Y)">Redo</button>
               {!confirmClear
                 ? <button type="button" className="tool-btn" onClick={function () { setConfirmClear(true); }} disabled={!page.marks.length && !page.ink.length}>Clear page</button>
                 : <button type="button" className="tool-btn danger-text" onClick={clearPage}>Clear all on this page?</button>}

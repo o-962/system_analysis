@@ -74,7 +74,7 @@ p{margin:0 0 1em}
 .nav a.on{color:var(--acc);background:var(--acc-soft);font-weight:500}
 
 .top-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
-.theme-btn,.menu-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:6px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.theme-btn,.menu-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;min-width:40px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
 .theme-btn:hover,.menu-btn:hover{border-color:var(--hover-line)}
 .menu-btn{display:none}
 .tabs{display:flex;gap:6px;padding:4px;margin:8px 0 32px;background:var(--surface);border-radius:12px;width:max-content;max-width:100%}
@@ -380,7 +380,9 @@ span.hl{cursor:default}
 :root[data-theme=dark] ::highlight(mk-green){background-color:#1d4a33}
 :root[data-theme=dark] ::highlight(mk-pink){background-color:#5a2238}
 :root[data-theme=dark] ::highlight(mk-blue){background-color:#22385f}
-.edit-btn.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.edit-fab{position:fixed;right:22px;bottom:22px;z-index:44;width:58px;height:58px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:var(--acc-ink);cursor:pointer;box-shadow:0 8px 24px var(--shadow),0 2px 6px rgba(0,0,0,.18);transition:transform .15s}
+.edit-fab:hover{transform:scale(1.07)}
+.edit-fab:focus-visible{outline:3px solid #9db4dc;outline-offset:3px}
 body.editing{padding-bottom:150px}
 body.editing #page-root,body.editing #page-root *{-webkit-user-select:text;user-select:text}
 body.editing #page-root button,body.editing #page-root a,body.editing #page-root label{cursor:text}
@@ -459,7 +461,8 @@ blockquote{padding:14px 16px;font-size:16px}
 .big{font-size:40px}
 .summary{padding:14px 16px}
 .summary .btn{flex:1}
-.sticky-summary{bottom:8px}
+.sticky-summary{bottom:8px;margin-right:66px}
+.edit-fab{right:14px;bottom:14px;width:52px;height:52px}
 .pager{flex-direction:column-reverse;gap:10px}.pager .btn{max-width:none;width:100%}
 .tbl table{font-size:13.5px}.tbl th,.tbl td{padding:8px}
 .tabs{width:100%}.tab{flex:1;padding:8px 10px}

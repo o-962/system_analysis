@@ -19,8 +19,8 @@
     "components/Home.jsx?v=9fa33f8859",
     "components/Review.jsx?v=3c531c2df1",
     "components/Search.jsx?v=043c205faf",
-    "components/Notes.jsx?v=e9b3030c54",
-    "components/App.jsx?v=e381f747b9"
+    "components/Notes.jsx?v=b32ef8b1fe",
+    "components/App.jsx?v=cc158d3c17"
 ];
   var html = '';
   data.forEach(function (src) { html += '<script src="' + src + '"><\/script>'; });
