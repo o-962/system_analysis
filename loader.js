@@ -15,11 +15,12 @@
     "components/store.jsx?v=3868ac0dc1",
     "components/Quiz.jsx?v=9ec8652cf0",
     "components/Exam.jsx?v=3b2bb46c2a",
-    "components/Chapter.jsx?v=089a846245",
+    "components/Chapter.jsx?v=066d6469f5",
     "components/Home.jsx?v=9fa33f8859",
     "components/Review.jsx?v=3c531c2df1",
     "components/Search.jsx?v=043c205faf",
-    "components/App.jsx?v=26e9793330"
+    "components/Notes.jsx?v=bbb618c52e",
+    "components/App.jsx?v=e79e4b4392"
 ];
   var html = '';
   data.forEach(function (src) { html += '<script src="' + src + '"><\/script>'; });

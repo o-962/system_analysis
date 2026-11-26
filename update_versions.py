@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Load order matters: course data first, then normalization (store.jsx), then the UI, then App last.
 DATA = ['ch1.js', 'ch2.js', 'ch3.js', 'ch4.js', 'mock.js', 'mock2.js', 'patterns.js']
-COMPONENTS = ['store.jsx', 'Quiz.jsx', 'Exam.jsx', 'Chapter.jsx', 'Home.jsx', 'Review.jsx', 'Search.jsx', 'App.jsx']
+COMPONENTS = ['store.jsx', 'Quiz.jsx', 'Exam.jsx', 'Chapter.jsx', 'Home.jsx', 'Review.jsx', 'Search.jsx', 'Notes.jsx', 'App.jsx']
 
 
 def versioned(path):

@@ -1,6 +1,6 @@
 /* App shell: hash routing, the store provider, the top bar (with dark mode and a phone menu), and the mock exam page. */
 
-var ROUTES = ['home', 'ch1', 'ch2', 'ch3', 'ch4', 'mock', 'cards', 'mistakes'];
+var ROUTES = ['home', 'ch1', 'ch2', 'ch3', 'ch4', 'mock', 'cards', 'notes', 'mistakes'];
 
 function currentRoute() {
   var h = (location.hash || '').replace('#', '');
@@ -17,6 +17,7 @@ function TopBar(props) {
     { r: 'ch4', t: 'Ch 3 · Projects' },
     { r: 'mock', t: 'Mock exam' },
     { r: 'cards', t: 'Flashcards' },
+    { r: 'notes', t: 'Notes' },
     { r: 'mistakes', t: 'My mistakes' + (props.mistakes ? ' (' + props.mistakes + ')' : '') }
   ];
   React.useEffect(function () { setOpen(false); }, [props.route]);
@@ -85,6 +86,17 @@ function App() {
   var _sr = React.useState(false), searching = _sr[0], setSearching = _sr[1];
   var _mt = React.useState('official'), mockTab = _mt[0], setMockTab = _mt[1];
   var _cj = React.useState(null), cardJump = _cj[0], setCardJump = _cj[1];
+  var _bd = React.useState(null), board = _bd[0], setBoard = _bd[1];
+  var _ae = React.useState(false), annotError = _ae[0], setAnnotError = _ae[1];
+
+  /* Any component can open a drawing board with openBoard(id, title). */
+  React.useEffect(function () {
+    function onOpen(e) { setBoard(e.detail); }
+    function onErr() { setAnnotError(true); }
+    window.addEventListener('open-board', onOpen);
+    window.addEventListener('annot-error', onErr);
+    return function () { window.removeEventListener('open-board', onOpen); window.removeEventListener('annot-error', onErr); };
+  }, []);
 
   /* Open search with "/" or Ctrl+K (not while typing in a field). */
   React.useEffect(function () {
@@ -131,6 +143,7 @@ function App() {
   else if (route === 'mock') page = <MockPage onJump={onJump} tab={mockTab} setTab={setMockTab} />;
   else if (route === 'cards') page = <Flashcards jump={cardJump} />;
   else if (route === 'mistakes') page = <MistakesPage onJump={onJump} />;
+  else if (route === 'notes') page = <NotesPage onJump={onJump} />;
   else {
     var ch = window.COURSE.chapters.find(function (c) { return c.id === route; });
     page = <ChapterView key={ch.id} ch={ch} onJump={onJump} />;
@@ -139,6 +152,8 @@ function App() {
   return (
     <StoreCtx.Provider value={store}>
       <TopBar route={route} mistakes={mistakes} theme={theme} onSearch={function () { setSearching(true); }} onToggleTheme={function () { setTheme(theme === 'dark' ? 'light' : 'dark'); }} />
+      {board ? <Board key={board.id} id={board.id} title={board.title} onClose={function () { setBoard(null); }} /> : null}
+      {annotError ? <div className="toast" role="alert">Your notes could not be saved: browser storage is full. Clear a board or some highlights. <button type="button" className="link" onClick={function () { setAnnotError(false); }}>Dismiss</button></div> : null}
       {searching ? <SearchDialog onClose={function () { setSearching(false); }} onOpen={openResult} /> : null}
       {page}
       <footer className="foot">

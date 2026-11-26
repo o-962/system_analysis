@@ -116,7 +116,9 @@ function ChapterView(props) {
       <article className="lesson">
         <p className="eyebrow">Lesson {ch.lessons.indexOf(ls) + 1} of {ch.lessons.length} · {ls.src}</p>
         <h2>{ls.t}</h2>
-        <div className="body" dangerouslySetInnerHTML={{ __html: ls.body }} />
+        <LessonTools lesson={ls} />
+        <LessonBody key={ls.id} lesson={ls} />
+        <LessonNotes lesson={ls} />
         <Quiz key={ls.id} anchor={'quiz-' + ls.id} title="Check your understanding" qs={ls.quiz} onFinish={function (r, n) { markDone(ls.id, r, n); }} />
       </article>
     );
