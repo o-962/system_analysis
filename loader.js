@@ -4,8 +4,8 @@
 (function () {
   var data = [
     "data/ch1.js?v=f96031e485",
-    "data/ch2.js?v=337905c9a6",
-    "data/ch3.js?v=85a9877010",
+    "data/ch2.js?v=e101d01aa3",
+    "data/ch3.js?v=459cbd90ae",
     "data/ch4.js?v=d8fb31be3d",
     "data/mock.js?v=661c621bf7",
     "data/mock2.js?v=b944434c28",
