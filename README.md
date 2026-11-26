@@ -26,3 +26,13 @@ Then open http://localhost:8765.
 - `data/`: course content (lessons, questions, flashcards, mock exams).
 
 Progress and the dark mode choice are saved in the browser's localStorage.
+
+## Updating the site
+
+After changing anything in `data/` or `components/`, run:
+
+```
+python update_versions.py
+```
+
+This rewrites `loader.js` with a content hash for every file, so browsers download a file again only when it has actually changed. `index.html` loads `loader.js` with a timestamp, so it is never served from cache. Commit `loader.js` together with your changes.
