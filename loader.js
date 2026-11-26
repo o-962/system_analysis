@@ -3,21 +3,21 @@
    finds the JSX files on DOMContentLoaded exactly as if they were in index.html. */
 (function () {
   var data = [
-    "data/ch1.js?v=7899c427a0",
-    "data/ch2.js?v=f10bc25cf5",
+    "data/ch1.js?v=f96031e485",
+    "data/ch2.js?v=337905c9a6",
     "data/ch3.js?v=85a9877010",
-    "data/ch4.js?v=1c006ad2ff",
+    "data/ch4.js?v=d8fb31be3d",
     "data/mock.js?v=661c621bf7",
     "data/mock2.js?v=b944434c28",
     "data/patterns.js?v=0f0716a270"
 ];
   var components = [
-    "components/store.jsx?v=3868ac0dc1",
+    "components/store.jsx?v=88ffba18f7",
     "components/Quiz.jsx?v=9ec8652cf0",
     "components/Exam.jsx?v=3b2bb46c2a",
-    "components/Chapter.jsx?v=089a846245",
+    "components/Chapter.jsx?v=9711e32a18",
     "components/Home.jsx?v=9fa33f8859",
-    "components/Review.jsx?v=3c531c2df1",
+    "components/Review.jsx?v=f3b11a23bc",
     "components/Search.jsx?v=043c205faf",
     "components/Notes.jsx?v=b32ef8b1fe",
     "components/App.jsx?v=cc158d3c17"

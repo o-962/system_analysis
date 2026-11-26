@@ -382,10 +382,12 @@ window.COURSE.chapters.push({
 <tr><td>Certification</td><td>Vendor or professional certificates (e.g. ITIL, cloud, business analysis)</td></tr></table></div>
 
 <h4>Characteristics (slide 14)</h4>
-<p>Develop a project plan · involve users and listen carefully · use project management tools to identify tasks and milestones · develop accurate cost and benefit information · <b>remain flexible</b>.</p>
+<p>Develop a project plan · Involve users and listen carefully to them · Use project management tools to identify tasks and milestones · Develop accurate cost and benefit information · <b>Remain flexible</b></p>
 
 <h4>Career opportunities (slide 15)</h4>
-<p>Companies need analysts to apply new IT, and e-commerce keeps raising demand. <b>What's important?</b> Job titles, company organization, company size, salary/location/future growth, corporate culture. Your notes: <b>"job title isn't so important"</b>; what you actually do matters more. AI was mentioned as a change in the job market.</p>
+<p>Companies need analysts to apply new IT, and e-commerce keeps raising demand.</p>
+<p><b>What's important when choosing a job?</b> Job titles · Company organization · Company size · Salary, location, and future growth · Corporate culture</p>
+<p>Your notes: <b>"job title isn't so important"</b>; what you actually do matters more. AI was mentioned as a change in the job market.</p>
 
 <h4>From your notes</h4>
 <ul><li><b>"Sketching on paper is a tool."</b> A quick sketch in a meeting clarifies a screen faster than a long description.</li>

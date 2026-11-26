@@ -57,6 +57,38 @@ function normalizeCourse() {
 }
 normalizeCourse();
 
+/* Turn run-on "a · b · c" text into a proper list of item cards.
+   Applies to any paragraph (or flashcard text) with three or more " · " separated items.
+   A short lead such as "<b>Listed:</b>" or "Steps:" before the first item is kept above the list. */
+function itemsHtml(parts) {
+  return '<ul class="items">' + parts.map(function (x) {
+    var t = x.trim().replace(/\.$/, '');
+    if (/^[a-z]/.test(t)) t = t.charAt(0).toUpperCase() + t.slice(1);
+    return '<li>' + t + '</li>';
+  }).join('') + '</ul>';
+}
+function splitLead(first) {
+  var m = first.match(/^(<b>[^<]{1,80}<\/b>:?|[^<:]{1,80}:)\s+([\s\S]+)$/);
+  return m ? [m[1], m[2]] : [null, first];
+}
+function prettyLists(html) {
+  return String(html || '').replace(/<p>([\s\S]*?)<\/p>/g, function (all, inner) {
+    if (/<(ul|ol|table|div|p)\b/.test(inner)) return all;
+    var parts = inner.split(' · ');
+    if (parts.length < 3) return all;
+    var lead = splitLead(parts[0]);
+    parts[0] = lead[1];
+    return (lead[0] ? '<p class="items-lead">' + lead[0] + '</p>' : '') + itemsHtml(parts);
+  });
+}
+function prettyText(text) {
+  var parts = String(text || '').split(' · ');
+  if (parts.length < 3) return text;
+  var lead = splitLead(parts[0]);
+  parts[0] = lead[1];
+  return (lead[0] ? '<p class="items-lead">' + lead[0] + '</p>' : '') + itemsHtml(parts);
+}
+
 /* Numeric answers: accept "56,000", "39.4%", "2.87 years". */
 function parseNum(v) {
   if (v === undefined || v === null) return NaN;

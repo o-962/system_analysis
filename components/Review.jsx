@@ -61,7 +61,7 @@ function Flashcards(props) {
         <>
           <button type="button" className={'flash' + (flipped ? ' flipped' : '')} onClick={function () { setFlipped(!flipped); }} aria-label={flipped ? 'Show term' : 'Show definition'}>
             <span className="face front"><small>{(window.COURSE.chapters[card.c - 1] || {}).label}: {(window.COURSE.chapters[card.c - 1] || {}).title}</small>{card.f}</span>
-            <span className="face back"><span dangerouslySetInnerHTML={{ __html: card.b }} /></span>
+            <span className="face back"><span className="back-inner" dangerouslySetInnerHTML={{ __html: prettyText(card.b) }} /></span>
           </button>
           <div className="flash-controls">
             <button type="button" className="btn ghost" onClick={function () { go(-1); }}>← Previous</button>
