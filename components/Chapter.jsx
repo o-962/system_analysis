@@ -76,6 +76,16 @@ function ChapterView(props) {
   var store = useStore();
   var st = store.st;
   var items = React.useMemo(function () { return chapterSections(ch); }, [ch]);
+
+  /* The left sections menu can be hidden to give the lesson the full width; the choice is remembered. */
+  var _n = React.useState(function () {
+    try { return localStorage.getItem('sa-nav') !== 'closed'; } catch (e) { return true; }
+  }), navOpen = _n[0], setNavOpen = _n[1];
+  function toggleNav() {
+    var v = !navOpen;
+    setNavOpen(v);
+    try { localStorage.setItem('sa-nav', v ? 'open' : 'closed'); } catch (e) {}
+  }
   var curId = items.some(function (it) { return it.id === st.cur[ch.id]; }) ? st.cur[ch.id] : items[0].id;
   var curIdx = items.findIndex(function (it) { return it.id === curId; });
   var cur = items[curIdx];
@@ -153,8 +163,13 @@ function ChapterView(props) {
         <p className="muted">{prog.done} of {prog.items} sections completed{prog.acc !== null ? ' · ' + prog.acc + '% accuracy' : ''}</p>
       </header>
 
-      <div className="ch-grid">
-        <aside>
+      <button type="button" className="nav-toggle" aria-expanded={navOpen} aria-controls={'sections-' + ch.id} onClick={toggleNav}>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M9 4v16" stroke="currentColor" strokeWidth="2" />{navOpen ? null : <path d="M13 10l2 2-2 2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />}</svg>
+        {navOpen ? 'Hide sections menu' : 'Show sections menu'}
+      </button>
+
+      <div className={'ch-grid' + (navOpen ? '' : ' nav-closed')}>
+        <aside id={'sections-' + ch.id}>
           <div className="mobile-bar">
             <button type="button" className="icon-btn" aria-label="Previous section" disabled={!prev} onClick={function () { if (prev) select(prev.id); }}>‹</button>
             <label className="sr" htmlFor={'jump-' + ch.id}>Go to section</label>

@@ -33,7 +33,7 @@ window.COURSE.chapters.push({
 <li>Project questions map to feasibility: employees → operational, team members → technical, cost → economic, schedule → "before year end".</li></ul></div>
 <div class="ex"><b>Example:</b> a university portal must launch before registration week (schedule is the fixed leg). Halfway through, costs are rising. Because the problem (cost) is not in the fixed leg, the remaining leg, scope, is adjusted: the "Could have" features move to a later release.</div>`,
       quiz: [
-        { id: 'c4l1q1', l: 'c4l1', q: 'A project\'s budget is fixed by contract, and it is starting to run over budget. According to the "stuck side" advice, what should the project manager adjust?',
+        { id: 'c4l1q1', l: 'c4l1', q: 'A project\'s budget is fixed by contract, and it is starting to run over budget. What should the project manager adjust?',
           o: [['The schedule, the scope, or both', 'Correct. The problem is in the fixed leg, so work on the other two legs.'],
               ['Only the budget', 'The budget is the fixed leg; it cannot move.'],
               ['Nothing; the triangle legs are independent', 'A change in one leg affects the other two.'],
@@ -45,7 +45,7 @@ window.COURSE.chapters.push({
               ['Project reporting', 'Reporting creates progress reports.'],
               ['Project scheduling', 'Scheduling creates the timetable and assigns tasks.']],
           k: 'Planning · scheduling · monitoring · reporting.' },
-        { id: 'c4l1q3', l: 'c4l1', fixed: true, q: 'According to the slides, a successful project must:',
+        { id: 'c4l1q3', l: 'c4l1', fixed: true, q: 'A successful project must:',
           o: [['Be completed on time and within budget', 'True, but not the whole definition.'],
               ['Deliver a quality product that satisfies users and meets requirements', 'True, but not the whole definition.'],
               ['Use the most expensive technology available', 'Not part of the definition.'],
@@ -128,7 +128,7 @@ window.COURSE.chapters.push({
               ['Lag time', 'Lag is a forced wait between tasks, not spare time.'],
               ['All of the above', 'Only slack time matches the definition.'],
               ['None of the above', 'Slack time matches.']],
-          a: 0, k: 'This is Question 4 of the lecturer\'s mock exam.' },
+          a: 0, k: 'Critical tasks have zero slack.' },
         { id: 'c4l3q2', l: 'c4l3', q: 'Task 7 cannot start until Task 5 (finishing day 20) and Task 6 (finishing day 32) are both done. When does Task 7 start?',
           o: [['Day 33', 'Correct. A multiple predecessor task starts after the LATEST finish: 32 + 1.'],
               ['Day 21', 'That ignores Task 6, which finishes later.'],
@@ -175,7 +175,7 @@ window.COURSE.chapters.push({
               ['A contingency plan', 'That is the response plan.'],
               ['Risk identification', 'Identification lists the risks.']],
           k: 'Qualitative = ratings. Quantitative = money, time, scope, quality.' },
-        { id: 'c4l4q3', l: 'c4l4', fixed: true, q: 'A system is delivered on time and within budget, and users like its interface, but it does not solve the business problem it was built for. According to the slides, the project is:',
+        { id: 'c4l4q3', l: 'c4l4', fixed: true, q: 'A system is delivered on time and within budget, and users like its interface, but it does not solve the business problem it was built for. The project is:',
           o: [['A success, because of the positive user reaction', 'The slides say it is a failure regardless of user reaction.'],
               ['A success, because it was on time and within budget', 'Not if the business problem remains.'],
               ['A failure', 'Correct. Business issues: if a system doesn\'t solve the business problem, it fails regardless of anything else.'],
@@ -227,7 +227,7 @@ window.COURSE.chapters.push({
     ]}
   ],
   exam: [
-    { id: 'c4x1', l: 'c4l3', q: 'In the slides\' Gantt example (A: 2, B: 4, C: 5 after B, D: 3 after A and C), what is the critical path?',
+    { id: 'c4x1', l: 'c4l3', q: 'Activities: A (2 days), B (4 days), C (5 days, after B), D (3 days, after A and C). What is the critical path?',
       o: [['B → C → D, minimum duration 12', 'Correct.'],
           ['A → D, duration 5', 'The shorter path; it has slack.'],
           ['A → B → C → D, duration 14', 'A and B are not in sequence; neither has a predecessor.'],

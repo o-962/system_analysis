@@ -14,7 +14,7 @@ window.COURSE.official = [
   { id: 'o1', l: 'c1l2', fixed: true, q: 'Which of the following is an example of wisdom?',
     o: [['Detailed analysis of employee performance trends', 'Analyzing trends produces information (or knowledge), not action.'],
         ['Recognizing that offering flexible work hours improves employee productivity', 'Recognizing a cause and effect from experience is knowledge: an understanding, not yet an action.'],
-        ['Implementing a work policy based on the understanding that it boosts productivity', 'Correct. Wisdom is taking action based on knowledge, the lecturer\'s "take actions to improve them".'],
+        ['Implementing a work policy based on the understanding that it boosts productivity', 'Correct. Wisdom is taking action based on knowledge, "taking actions to improve".'],
         ['Collecting attendance records for all employees', 'Raw records are data.'],
         ['Both B and C', 'Tempting, but B is knowledge (understanding); only C acts on it.'],
         ['None of the above', 'C is wisdom.']],

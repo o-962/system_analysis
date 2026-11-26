@@ -29,7 +29,7 @@ window.COURSE.chapters.push({
               ['No, because stakeholders must be humans', '"Human or organization".'],
               ['Only if it pays for the system', 'Paying is not a condition.']],
           k: 'Stakeholder = affecting OR affected.' },
-        { id: 'c2l1q2', l: 'c2l1', q: 'According to the introduction, which sequence is correct?',
+        { id: 'c2l1q2', l: 'c2l1', q: 'Which sequence is correct?',
           o: [['Systems request, then preliminary investigation (feasibility, fact-finding, reporting)', 'Correct.'],
               ['Preliminary investigation, then systems request', 'Reversed: "the process starts with a systems request".'],
               ['Reporting to management, then systems request', 'Reporting comes last.'],
@@ -63,7 +63,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
               ['After business results only', 'No.'],
               ['It replaces the mission statement', 'It does not.']],
           k: 'SWOT → realistic goals.' },
-        { id: 'c2l2q3', l: 'c2l2', q: 'A plan covering the next 2-3 years most likely belongs to which level in the lecturer\'s strategic plan pyramid?',
+        { id: 'c2l2q3', l: 'c2l2', q: 'A plan covering the next 2-3 years most likely belongs to which level of the strategic plan?',
           o: [['Middle management', 'Correct. Top 5-10, middle 2-3, operations day to day.'],
               ['Top management', 'Top plans cover 5-10 years.'],
               ['Operational staff', 'Day to day.'],
@@ -83,7 +83,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
 <div class="q o"><b>O</b>External<br>Collaboration</div>
 <div class="q w"><b>W</b>Internal<br>Tuition fees</div>
 <div class="q t"><b>T</b>External · minimize<br>Competition, regulations</div>
-</div><figcaption>SWOT for PSUT, from your notes (lecture 6)</figcaption></figure>
+</div><figcaption>SWOT for PSUT</figcaption></figure>
 <div class="note"><b>From your notes (lecture 6):</b><ul>
 <li><b>Internal</b> = anything you have the <b>power to control</b> (S, W).</li>
 <li><b>External</b> = anything <b>out of your control</b> (O, T).</li>
@@ -111,8 +111,8 @@ A <b>review committee</b> reviews requests coming from these levels and connects
               ['It is valuable technology', 'That is a strength.']],
           k: 'Internal → S/W. External → O/T.' },
         { id: 'c2l3q3', l: 'c2l3', q: 'A university has no parking because the surrounding area is fully built and owned by others. In SWOT terms this is best treated as:',
-          o: [['External, because it is out of the university\'s control', 'Correct. The lecturer said location can be internal or external; here there is no control.'],
-              ['Always internal, because location is part of the university', 'The lecturer said it "can be internal or external".'],
+          o: [['External, because it is out of the university\'s control', 'Correct. Location can be internal or external; here there is no control.'],
+              ['Always internal, because location is part of the university', 'Location "can be internal or external".'],
               ['A strength', 'It is not an advantage.'],
               ['Not part of SWOT', 'It is.']],
           k: 'The test: do you have the power to control it?' }
@@ -133,7 +133,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
 <div class="ex"><b>Why is CASE better?</b> It keeps the plan, the models, and the requirements in one place. Change a requirement and you see what it affects. In Word everything is separate text.</div>
 <div class="trap"><b>Link to Chapter 1:</b> Visible Analyst is the same CASE tool shown in Figure 1-24.</div>`,
       quiz: [
-        { id: 'c2l4q1', l: 'c2l4', q: 'According to the slides, the MOST effective planning approach is:',
+        { id: 'c2l4q1', l: 'c2l4', q: 'The MOST effective planning approach for IT projects is:',
           o: [['A CASE tool such as Visible Analyst', 'Correct.'],
               ['A spreadsheet such as Excel', 'Some analysts prefer it, but it is not the most effective.'],
               ['A text-based tool such as Word', 'Traditional.'],
@@ -171,14 +171,14 @@ A <b>review committee</b> reviews requests coming from these levels and connects
 <p>Conclusion in your notes: <b>"so it's a good business"</b>. The lecturer crossed out "depends on the payback" because the decision here comes from the rate of return.</p>
 <div class="trap"><b>FTE</b> = full-time equivalent (one full-time employee). An <b>in-kind contribution</b> is not cash (it is staff time), but it has a monetary value and counts toward the investment.</div>`,
       quiz: [
-        { id: 'c2l5q1', l: 'c2l5', q: 'In the lecture example, 4 internal employees (FTE) work 4 months on the project. How is their time treated in the business case?',
+        { id: 'c2l5q1', l: 'c2l5', q: 'Four internal employees (FTE) work 4 months on a project. How is their time treated in the business case?',
           o: [['As an in-kind contribution with a monetary value (24K) included in the total investment', 'Correct. No new cash was paid, but their time has value and is part of the 49K.'],
               ['Ignored, because no new cash is paid', 'Ignoring it understates the real investment.'],
               ['Counted as a benefit', 'It is a cost, not a benefit.'],
               ['Counted as maintenance', 'Maintenance is a separate item.']],
           k: 'In-kind = a real cost, even if not cash.' },
-        { id: 'c2l5q2', l: 'c2l5', q: 'In the lecturer\'s triangle, cost is described as:',
-          o: [['Time + resources', 'Correct, from your notes: "cost = time + resources".'],
+        { id: 'c2l5q2', l: 'c2l5', q: 'In the project triangle of scope, time, and resources, cost is described as:',
+          o: [['Time + resources', 'Correct: "cost = time + resources".'],
               ['Scope + quality', 'No.'],
               ['Only the price of hardware', 'Far too narrow.'],
               ['Benefits minus risks', 'Unrelated.']],
@@ -241,7 +241,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
 <figure class="dg"><div class="flow wrap"><div class="bx">1. Request</div><div class="ar">→</div><div class="bx hi">2. Change manager<br><small>cancel · send back · on hold · prioritize · history</small></div><div class="ar">→</div><div class="bx">3. Top manager approves</div><div class="ar">→</div><div class="bx">4. Change</div></div><figcaption>From your notes: "the understanding is right, but it doesn't always work like this"</figcaption></figure>`,
       quiz: [
         { id: 'c2l7q1', l: 'c2l7', q: 'A student asks IT to reset a forgotten password; the registrar asks IT for a new report of GPA statistics for all departments. Which classification is correct?',
-          o: [['The first is a service request (hours, individual); the second is a request for service (new, group, weeks or more)', 'Correct. These are exactly the lecturer\'s two examples.'],
+          o: [['The first is a service request (hours, individual); the second is a request for service (new, group, weeks or more)', 'Correct.'],
               ['Both are service requests', 'The second is new and affects a group.'],
               ['Both need committee approval', 'A password reset doesn\'t need a committee.'],
               ['The first is the new initiative', 'Reversed.']],
@@ -288,7 +288,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
               ['Economic feasibility', 'It is not about cost.'],
               ['Schedule feasibility', 'It is not about duration.']],
           k: 'Capacity / performance / integration → technical.' },
-        { id: 'c2l8q3', l: 'c2l8', q: 'A system would technically work, but it would collect customer data in a way that may break privacy law. Under the slides, this concern is listed under:',
+        { id: 'c2l8q3', l: 'c2l8', q: 'A system would technically work, but it would collect customer data in a way that may break privacy law. This concern belongs to:',
           o: [['Operational feasibility (legal or ethical issues)', 'Correct. Slide 22 lists "Do legal or ethical issues need to be considered?" under operational.'],
               ['Technical feasibility', 'The system works technically.'],
               ['Schedule feasibility', 'No.'],
@@ -398,10 +398,10 @@ A <b>review committee</b> reviews requests coming from these levels and connects
               ['Technical code details', 'Too early.'],
               ['Cost reductions only', 'Too narrow.']],
           k: 'Stay positive with users.' },
-        { id: 'c2l11q3', l: 'c2l11', q: 'Based on the lecture notes, which statement distinguishes a process from a transaction?',
-          o: [['A process has an end goal, while a transaction alone has no end goal but can trigger other transactions', 'Correct, from your notes (lecture 9).'],
+        { id: 'c2l11q3', l: 'c2l11', q: 'Which statement distinguishes a process from a transaction?',
+          o: [['A process has an end goal, while a transaction alone has no end goal but can trigger other transactions', 'Correct.'],
               ['A transaction always has an end goal', 'Reversed.'],
-              ['They are the same thing', 'The lecturer distinguished them.'],
+              ['They are the same thing', 'They are different.'],
               ['A process is a single credit-card insert', 'That is an example of a transaction.']],
           k: 'Business process = transactions + events + results.' }
       ]
@@ -441,7 +441,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
               ['A systems request form', 'No.']],
           k: 'Correlation → XY. Priority of causes → Pareto.' },
         { id: 'c2l12q3', l: 'c2l12', q: 'Why might an analyst include a trick question in a user survey?',
-          o: [['To detect respondents who answer carelessly (survey fatigue) and exclude their surveys', 'Correct, from your notes (lecture 10).'],
+          o: [['To detect respondents who answer carelessly (survey fatigue) and exclude their surveys', 'Correct.'],
               ['To replace follow-up questions', 'Surveys have no follow-ups, and the trick question isn\'t a substitute.'],
               ['To make the survey longer', 'That would increase fatigue.'],
               ['To test the analyst', 'No.']],
@@ -489,7 +489,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
   ],
   groups: [
     { id: 'c2g1', after: 'c2l4', t: 'Practice: Strategy, SWOT, Planning', qs: [
-      { id: 'c2g1q1', l: 'c2l3', q: 'PSUT turns its weakness "high tuition fees" into a strength by offering scholarships funded by industry partners. Which lecture goal is this?',
+      { id: 'c2g1q1', l: 'c2l3', q: 'PSUT turns its weakness "high tuition fees" into a strength by offering scholarships funded by industry partners. Which SWOT goal is this?',
         o: [['Turning a weakness into a strength', 'Correct: "what are we trying to do? Make a weakness a strength".'],
             ['Turning a threat into an opportunity', 'Fees are an internal weakness, not a threat.'],
             ['Minimizing strengths', 'No.'],
@@ -521,8 +521,8 @@ A <b>review committee</b> reviews requests coming from these levels and connects
             ['The benefit should be reduced by 24K', 'The 24K is a cost, not a reduction in benefit.'],
             ['Salaries belong to schedule feasibility', 'No.']],
         k: 'True cost = cash + in-kind.' },
-      { id: 'c2g2q2', l: 'c2l7', q: 'A department submits a request for a new data dashboard. Which flow matches the lecture?',
-        o: [['Request → change manager (can cancel, send back, hold, prioritize) → top manager approves → change', 'Correct, from your notes (lecture 5).'],
+      { id: 'c2g2q2', l: 'c2l7', q: 'A department submits a request for a new data dashboard. Which flow is correct?',
+        o: [['Request → change manager (can cancel, send back, hold, prioritize) → top manager approves → change', 'Correct.'],
             ['Request → immediate change → approval later', 'The change comes after approval.'],
             ['Change manager → request → change', 'The request comes first.'],
             ['Top manager → user → request', 'No.']],
@@ -547,13 +547,13 @@ A <b>review committee</b> reviews requests coming from these levels and connects
             ['Technical', 'The resources exist.'],
             ['Economic', 'Costs are below benefits.']],
         k: 'Check each dimension separately.' },
-      { id: 'c2g3q2', l: 'c2l10', q: 'A discretionary project costs 20K and brings 5K in benefits. According to the lecture, the decision is:',
-        o: [['Don\'t do it', 'Correct, from your notes: "20K cost > 5K benefits → don\'t do it".'],
+      { id: 'c2g3q2', l: 'c2l10', q: 'A discretionary project costs 20K and brings 5K in benefits. The decision is:',
+        o: [['Don\'t do it', 'Correct: "20K cost > 5K benefits → don\'t do it".'],
             ['Do it because all projects are mandatory', 'It is discretionary.'],
             ['Do it as a must', 'No.'],
             ['Resubmit it as nondiscretionary', 'Its nature doesn\'t change.']],
         k: 'Discretionary → compare cost and benefit.' },
-      { id: 'c2g3q3', l: 'c2l10', q: 'Which project would you NOT run a cost-benefit calculation for, according to the lecturer?',
+      { id: 'c2g3q3', l: 'c2l10', q: 'For which project would you NOT run a cost-benefit calculation?',
         o: [['A legally required change (sacred cow / legal / competitive / operational necessity)', 'Correct: "you have to do it; don\'t calculate benefits".'],
             ['A new report requested by a manager', 'Discretionary.'],
             ['A nicer color theme', 'Won\'t / nice to have.'],
@@ -624,7 +624,7 @@ A <b>review committee</b> reviews requests coming from these levels and connects
           ['Constraints and future direction', 'Included.'],
           ['Products and services', 'Included.']],
       k: 'Business profile = a picture of the business.' },
-    { id: 'c2x6', l: 'c2l9', q: 'Which question belongs to schedule feasibility in the slides?',
+    { id: 'c2x6', l: 'c2l9', q: 'Which question belongs to schedule feasibility?',
       o: [['Will an accelerated schedule pose any risks?', 'Correct.'],
           ['Does management support the project?', 'Operational.'],
           ['Does the company have the needed technical expertise?', 'Technical.'],
