@@ -32,6 +32,10 @@ function TopBar(props) {
           })}
         </nav>
         <div className="top-actions">
+          <button type="button" className={'theme-btn edit-btn' + (props.editing ? ' on' : '')} onClick={props.onToggleEdit} aria-pressed={!!props.editing} title="Highlight, draw, and take notes on this page">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /><path d="M14 6l3 3" stroke="currentColor" strokeWidth="2" /></svg>
+            <span className="theme-label">{props.editing ? 'Editing' : 'Edit'}</span>
+          </button>
           <button type="button" className="theme-btn search-btn" onClick={props.onSearch} aria-label="Search everything" title="Search (/ or Ctrl+K)">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
             <span className="theme-label">Search</span><kbd className="kbd">/</kbd>
@@ -86,16 +90,13 @@ function App() {
   var _sr = React.useState(false), searching = _sr[0], setSearching = _sr[1];
   var _mt = React.useState('official'), mockTab = _mt[0], setMockTab = _mt[1];
   var _cj = React.useState(null), cardJump = _cj[0], setCardJump = _cj[1];
-  var _bd = React.useState(null), board = _bd[0], setBoard = _bd[1];
+  var _ed = React.useState(false), editing = _ed[0], setEditing = _ed[1];
   var _ae = React.useState(false), annotError = _ae[0], setAnnotError = _ae[1];
 
-  /* Any component can open a drawing board with openBoard(id, title). */
   React.useEffect(function () {
-    function onOpen(e) { setBoard(e.detail); }
     function onErr() { setAnnotError(true); }
-    window.addEventListener('open-board', onOpen);
     window.addEventListener('annot-error', onErr);
-    return function () { window.removeEventListener('open-board', onOpen); window.removeEventListener('annot-error', onErr); };
+    return function () { window.removeEventListener('annot-error', onErr); };
   }, []);
 
   /* Open search with "/" or Ctrl+K (not while typing in a field). */
@@ -138,12 +139,30 @@ function App() {
   var store = React.useMemo(function () { return { st: st, up: up }; }, [st, up]);
   var mistakes = Object.keys(st.ans).filter(function (id) { return st.ans[id].c === false; }).length;
 
+  /* Which page is on screen: highlights, notes, and drawings are saved per page. */
+  var pageKey = route;
+  if (route === 'mock') pageKey = 'mock/' + mockTab;
+  var chObj = window.COURSE.chapters.find(function (c) { return c.id === route; });
+  if (chObj) {
+    var secs = chapterSections(chObj);
+    var curSec = secs.some(function (x) { return x.id === st.cur[route]; }) ? st.cur[route] : secs[0].id;
+    pageKey = route + '/' + curSec;
+  }
+
+  /* Open a page from the Notes list. */
+  function openPage(k) {
+    var parts = k.split('/');
+    if (parts[0] === 'mock') { setMockTab(parts[1]); goTo('mock'); }
+    else if (parts[1]) onJump(parts[0], parts[1]);
+    else goTo(parts[0]);
+  }
+
   var page;
   if (route === 'home') page = <Home onJump={onJump} />;
   else if (route === 'mock') page = <MockPage onJump={onJump} tab={mockTab} setTab={setMockTab} />;
   else if (route === 'cards') page = <Flashcards jump={cardJump} />;
   else if (route === 'mistakes') page = <MistakesPage onJump={onJump} />;
-  else if (route === 'notes') page = <NotesPage onJump={onJump} />;
+  else if (route === 'notes') page = <NotesPage onOpenPage={openPage} />;
   else {
     var ch = window.COURSE.chapters.find(function (c) { return c.id === route; });
     page = <ChapterView key={ch.id} ch={ch} onJump={onJump} />;
@@ -151,11 +170,11 @@ function App() {
 
   return (
     <StoreCtx.Provider value={store}>
-      <TopBar route={route} mistakes={mistakes} theme={theme} onSearch={function () { setSearching(true); }} onToggleTheme={function () { setTheme(theme === 'dark' ? 'light' : 'dark'); }} />
-      {board ? <Board key={board.id} id={board.id} title={board.title} onClose={function () { setBoard(null); }} /> : null}
-      {annotError ? <div className="toast" role="alert">Your notes could not be saved: browser storage is full. Clear a board or some highlights. <button type="button" className="link" onClick={function () { setAnnotError(false); }}>Dismiss</button></div> : null}
+      <TopBar route={route} mistakes={mistakes} theme={theme} editing={editing} onToggleEdit={function () { setEditing(!editing); }} onSearch={function () { setSearching(true); }} onToggleTheme={function () { setTheme(theme === 'dark' ? 'light' : 'dark'); }} />
+      {annotError ? <div className="toast" role="alert">Your notes could not be saved: browser storage is full. Clear some drawings or highlights. <button type="button" className="link" onClick={function () { setAnnotError(false); }}>Dismiss</button></div> : null}
       {searching ? <SearchDialog onClose={function () { setSearching(false); }} onOpen={openResult} /> : null}
-      {page}
+      <div id="page-root">{page}</div>
+      <EditLayer pageKey={pageKey} active={editing} onDone={function () { setEditing(false); }} />
       <footer className="foot">
         <div className="wrap foot-in">
           <p>Sources: your four chapters (Introduction to Information Systems, Analyzing a Business Case, Financial Analysis, Managing System Projects) with speaker notes, the lecturer's mock exam and financial analysis exercise, annotated slide screenshots, the lecture notebook, and the class whiteboard. Progress is saved in this browser only.</p>
