@@ -11,13 +11,18 @@ function ChapterFilter(props) {
   );
 }
 
-function Flashcards() {
+function Flashcards(props) {
   var store = useStore();
   var st = store.st;
   var _f = React.useState('all'), filter = _f[0], setFilter = _f[1];
   var _u = React.useState(false), onlyNew = _u[0], setOnlyNew = _u[1];
   var _i = React.useState(0), idx = _i[0], setIdx = _i[1];
   var _fl = React.useState(false), flipped = _fl[0], setFlipped = _fl[1];
+
+  /* Opened from search: show that exact card, with all filters cleared. */
+  React.useEffect(function () {
+    if (props.jump) { setFilter('all'); setOnlyNew(false); setIdx(props.jump.i); setFlipped(false); }
+  }, [props.jump && props.jump.n]);
 
   function key(c) { return c.c + ':' + c.f; }
   var deck = window.COURSE.cards.filter(function (c) {

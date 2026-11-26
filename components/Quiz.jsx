@@ -20,7 +20,7 @@ function QuestionCard(props) {
   var q = props.q, pick = props.pick, reveal = props.reveal;
   var state = reveal ? (pick === q.a ? ' is-ok' : ' is-bad') : '';
   return (
-    <article className={'qcard' + state}>
+    <article id={'q-' + q.id} className={'qcard' + state}>
       <div className="qhead">
         <span className="qnum">Question {props.num}</span>
         {props.showSource && reveal ? <SourceLink q={q} onJump={props.onJump} /> : null}
@@ -78,7 +78,7 @@ function CalcQuestion(props) {
     if (props.onDone) props.onDone(q.id, calcAllOk(q, vals));
   }
   return (
-    <article className={'qcard' + (reveal ? (ok ? ' is-ok' : ' is-bad') : '')}>
+    <article id={'q-' + q.id} className={'qcard' + (reveal ? (ok ? ' is-ok' : ' is-bad') : '')}>
       <div className="qhead"><span className="qnum">Question {props.num}</span><span className="tag">Calculation</span></div>
       <p className="qtext">{q.q}</p>
       <div className="calc">
@@ -115,7 +115,7 @@ function OpenQuestion(props) {
   var mark = store.st.ans[q.id];
   function markAs(ok) { recordAnswer(store.up, q.id, ok); if (props.onDone) props.onDone(q.id, ok); }
   return (
-    <article className="qcard">
+    <article id={'q-' + q.id} className="qcard">
       <div className="qhead"><span className="qnum">Question {props.num}</span><span className="tag">Written answer</span></div>
       <p className="qtext">{q.q}</p>
       <label className="sr" htmlFor={'ta-' + q.id}>Your answer</label>

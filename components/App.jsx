@@ -31,6 +31,10 @@ function TopBar(props) {
           })}
         </nav>
         <div className="top-actions">
+          <button type="button" className="theme-btn search-btn" onClick={props.onSearch} aria-label="Search everything" title="Search (/ or Ctrl+K)">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+            <span className="theme-label">Search</span><kbd className="kbd">/</kbd>
+          </button>
           <button type="button" className="theme-btn" onClick={props.onToggleTheme} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'} title={dark ? 'Light mode' : 'Dark mode'}>
             {dark
               ? <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor" /><g stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" /></g></svg>
@@ -47,7 +51,7 @@ function TopBar(props) {
 }
 
 function MockPage(props) {
-  var _t = React.useState('official'), tab = _t[0], setTab = _t[1];
+  var tab = props.tab, setTab = props.setTab;
   return (
     <div className="wrap page narrow">
       <h1>Mock exams</h1>
@@ -78,6 +82,21 @@ function App() {
   var _r = React.useState(currentRoute()), route = _r[0], setRoute = _r[1];
   var _th = React.useState(getTheme()), theme = _th[0], setTheme = _th[1];
   var _c = React.useState(false), confirmReset = _c[0], setConfirmReset = _c[1];
+  var _sr = React.useState(false), searching = _sr[0], setSearching = _sr[1];
+  var _mt = React.useState('official'), mockTab = _mt[0], setMockTab = _mt[1];
+  var _cj = React.useState(null), cardJump = _cj[0], setCardJump = _cj[1];
+
+  /* Open search with "/" or Ctrl+K (not while typing in a field). */
+  React.useEffect(function () {
+    function onKey(e) {
+      var typing = e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName);
+      if ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K'))) {
+        e.preventDefault(); setSearching(true);
+      }
+    }
+    window.addEventListener('keydown', onKey);
+    return function () { window.removeEventListener('keydown', onKey); };
+  }, []);
 
   React.useEffect(function () { applyTheme(theme); }, [theme]);
   React.useEffect(function () {
@@ -96,13 +115,21 @@ function App() {
     goTo(chId);
   }, [up]);
 
+  /* Go to a search result: a chapter section, a mock exam tab, or a flashcard, then scroll to it. */
+  function openResult(t) {
+    if (t.route === 'mock') { setMockTab(t.tab); goTo('mock'); }
+    else if (t.route === 'cards') { setCardJump({ i: t.card, n: Date.now() }); goTo('cards'); }
+    else onJump(t.route, t.item);
+    if (t.anchor) setTimeout(function () { scrollToAnchor(t.anchor); }, 150);
+  }
+
   var store = React.useMemo(function () { return { st: st, up: up }; }, [st, up]);
   var mistakes = Object.keys(st.ans).filter(function (id) { return st.ans[id].c === false; }).length;
 
   var page;
   if (route === 'home') page = <Home onJump={onJump} />;
-  else if (route === 'mock') page = <MockPage onJump={onJump} />;
-  else if (route === 'cards') page = <Flashcards />;
+  else if (route === 'mock') page = <MockPage onJump={onJump} tab={mockTab} setTab={setMockTab} />;
+  else if (route === 'cards') page = <Flashcards jump={cardJump} />;
   else if (route === 'mistakes') page = <MistakesPage onJump={onJump} />;
   else {
     var ch = window.COURSE.chapters.find(function (c) { return c.id === route; });
@@ -111,7 +138,8 @@ function App() {
 
   return (
     <StoreCtx.Provider value={store}>
-      <TopBar route={route} mistakes={mistakes} theme={theme} onToggleTheme={function () { setTheme(theme === 'dark' ? 'light' : 'dark'); }} />
+      <TopBar route={route} mistakes={mistakes} theme={theme} onSearch={function () { setSearching(true); }} onToggleTheme={function () { setTheme(theme === 'dark' ? 'light' : 'dark'); }} />
+      {searching ? <SearchDialog onClose={function () { setSearching(false); }} onOpen={openResult} /> : null}
       {page}
       <footer className="foot">
         <div className="wrap foot-in">
